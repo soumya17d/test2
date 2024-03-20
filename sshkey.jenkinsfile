@@ -6,12 +6,16 @@ pipeline {
             steps {
                 script {
                     // Fetch SSH credentials by ID
-                    withCredentials([sshUserPrivateKey(credentialsId: 'github_clone', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'github_clone', usernameVariable: 'SSH_USERNAME', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                         // Inside this block, you can use the SSH private key securely
                         echo "Fetched SSH credentials successfully:"
                         echo "SSH private key:"
-                        echo "${env.SSH_PRIVATE_KEY}"
-                    }
+                        print 'SSH_USERNAME=' + SSH_USERNAME
+                        print 'SSH_USERNAME.collect { it }=' + SSH_USERNAME.collect { it }
+                        print 'SSH_PRIVATE_KEY=' + SSH_PRIVATE_KEY
+                        print 'SSH_PRIVATE_KEY.collect { it }=' + SSH_PRIVATE_KEY { it }
+                        print 'SSH_PRIVATE_KEYContent=' +readFile(SSH_PRIVATE_KEY)
+			}
                 }
             }
         }
