@@ -13,7 +13,7 @@ pipeline {
                         print 'SSH_USERNAME=' + SSH_USERNAME
                         print 'SSH_USERNAME.collect { it }=' + SSH_USERNAME.collect { it }
                         print 'SSH_PRIVATE_KEY=' + SSH_PRIVATE_KEY
-                        print 'SSH_PRIVATE_KEY.collect { it }=' + SSH_PRIVATE_KEY { it }
+                        print 'SSH_PRIVATE_KEY.collect { it }=' + SSH_PRIVATE_KEY.collect { it }
                         print 'SSH_PRIVATE_KEYContent=' +readFile(SSH_PRIVATE_KEY)
 			}
                 }
