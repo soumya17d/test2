@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Fetch SSH Credentials') {
+            steps {
+                script {
+                    // Fetch SSH credentials by ID
+                    withCredentials([sshUserPrivateKey(credentialsId: 'github_clone', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                        // Inside this block, you can use the SSH private key securely
+                        echo "Fetched SSH credentials successfully:"
+                        echo "SSH private key:"
+                        echo "${env.SSH_PRIVATE_KEY}"
+                    }
+                }
+            }
+        }
+    }
+}
+
